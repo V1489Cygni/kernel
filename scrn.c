@@ -45,10 +45,10 @@ void putch(unsigned char c) {
     unsigned att = attrib << 8;
     if(c == 0x08) {
         if(csr_x != 0) { 
-			csr_x--;
-			putch(' ');
-			csr_x--;
-		}
+            csr_x--;
+            putch(' ');
+            csr_x--;
+        }
     }
     else if(c == 0x09) {
         csr_x = (csr_x + 8) & ~(8 - 1);
