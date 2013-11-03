@@ -1,4 +1,4 @@
-CFLAGS  := -fno-stack-protector -fno-builtin -nostdinc -O -g -Wall -I.
+CFLAGS  := -fno-stack-protector -fno-builtin -nostdinc -O -g -Wall -I. -std=c99
 LDFLAGS := -nostdlib -Wl,-N -Wl,-Ttext -Wl,100000
 
 all:	kernel.bin
