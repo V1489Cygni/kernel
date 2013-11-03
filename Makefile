@@ -3,7 +3,7 @@ LDFLAGS := -nostdlib -Wl,-N -Wl,-Ttext -Wl,100000
 
 all:	kernel.bin
 
-kernel.bin:	start.o	main.o scrn.o
+kernel.bin: start.o main.o scrn.o
 	ld -T link.ld -o kernel.bin start.o main.o scrn.o
 	@echo Done!
 
