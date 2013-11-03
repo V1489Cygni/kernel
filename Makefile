@@ -22,4 +22,3 @@ scrn.o: scrn.c system.h
 
 clean: 
 	rm -f *.o *.bin
-
