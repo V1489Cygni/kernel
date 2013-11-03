@@ -1,0 +1,11 @@
+#Vim swap files
+*.swp
+
+#Object files
+*.o
+
+#Binary files
+*.bin
+
+#Kernel image
+*.img
