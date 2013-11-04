@@ -5,6 +5,7 @@
 #include "../idt/idt.h"
 #include "../isr/isr.h"
 #include "../irq/irq.h"
+#include "../pit/pit.h"
 
 void process_cmd(unsigned char* cmd) {
     int length = 0;
@@ -29,6 +30,8 @@ int kernel_main() {
     idt_install();
     isr_install();
     irq_install();
+    timer_install();
+    __asm__ __volatile__ ("sti");
     while(1) {
         print((unsigned char*)"> ");
         process_cmd(next_cmd());

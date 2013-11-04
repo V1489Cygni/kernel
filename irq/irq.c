@@ -1,6 +1,5 @@
 #include "irq.h"
 
-#include "../isr/regs.h"
 #include "../idt/idt.h"
 #include "../service/service.h"
 
