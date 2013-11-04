@@ -17,7 +17,7 @@ unsigned char* next_cmd() {
         } else if(c == 0x1c) {
             buffer[i] = '\0';
             print_char('\n');
-            return &buffer;
+            return (unsigned char*)&buffer;
         } else {
             c = ascii_char(c);
             buffer[i++] = c;
