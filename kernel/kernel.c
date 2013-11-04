@@ -4,6 +4,7 @@
 #include "../gdt/gdt.h"
 #include "../idt/idt.h"
 #include "../isr/isr.h"
+#include "../irq/irq.h"
 
 void process_cmd(unsigned char* cmd) {
     int length = 0;
@@ -27,6 +28,7 @@ int kernel_main() {
     gdt_install();
     idt_install();
     isr_install();
+    irq_install();
     while(1) {
         print((unsigned char*)"> ");
         process_cmd(next_cmd());

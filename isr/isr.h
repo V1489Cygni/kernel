@@ -1,6 +1,8 @@
 #ifndef ISR_H
 #define ISR_H
 
+#include "regs.h"
+
 extern void isr0();
 extern void isr1();
 extern void isr2();
@@ -33,13 +35,6 @@ extern void isr28();
 extern void isr29();
 extern void isr30();
 extern void isr31();
-
-struct regs {
-    unsigned int gs, fs, es, ds;
-    unsigned int edi, esi, ebp, esp, ebx, edx, ecx, eax; 
-    unsigned int int_no, err_code; 
-    unsigned int eip, cs, eflags, useresp, ss;
-};
 
 void isr_install();
 void fault_handler(struct regs*);
