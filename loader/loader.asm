@@ -1,4 +1,5 @@
 [BITS 32]
+
 global start
 start:
     mov esp, _sys_stack
@@ -10,15 +11,15 @@ mboot:
     MULTIBOOT_MEMORY_INFO   equ 1<<1
     MULTIBOOT_HEADER_MAGIC  equ 0x1BADB002
     MULTIBOOT_HEADER_FLAGS  equ MULTIBOOT_PAGE_ALIGN | MULTIBOOT_MEMORY_INFO
-    MULTIBOOT_CHECKSUM      equ - (MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS)
+    MULTIBOOT_CHECKSUM      equ -(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS)
 
     dd MULTIBOOT_HEADER_MAGIC
     dd MULTIBOOT_HEADER_FLAGS
     dd MULTIBOOT_CHECKSUM
     
 stublet:
-    EXTERN cmain
-    call cmain
+    EXTERN kernel_main
+    call kernel_main
     jmp $
 
 SECTION .bss
