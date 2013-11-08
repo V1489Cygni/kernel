@@ -13,7 +13,8 @@ gcc -fno-stack-protector -fno-builtin -nostdinc -O -g -Wall -I. -std=c99 -c -o o
 gcc -fno-stack-protector -fno-builtin -nostdinc -O -g -Wall -I. -std=c99 -c -o input.o ./input/input.c
 gcc -fno-stack-protector -fno-builtin -nostdinc -O -g -Wall -I. -std=c99 -c -o shell.o ./shell/shell.c
 gcc -fno-stack-protector -fno-builtin -nostdinc -O -g -Wall -I. -std=c99 -c -o kernel.o ./kernel/kernel.c
-ld -T link.ld -o kernel.bin gdt_asm.o gdt.o idt_asm.o idt.o isr_asm.o isr.o loader.o pit.o service.o irq_asm.o irq.o output.o input.o shell.o kernel.o
+gcc -fno-stack-protector -fno-builtin -nostdinc -O -g -Wall -I. -std=c99 -c -o rtc.o ./rtc/rtc.c
+ld -T link.ld -o kernel.bin gdt_asm.o gdt.o idt_asm.o idt.o isr_asm.o isr.o loader.o pit.o service.o irq_asm.o irq.o output.o input.o shell.o rtc.o kernel.o
 rm *.o
 echo "drive c: file=\"`pwd`/core.img\" partition=1" > ~/.mtoolsrc
 dd if=/dev/zero of=core.img count=088704 bs=512

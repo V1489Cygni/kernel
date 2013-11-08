@@ -78,7 +78,23 @@ void print_int(int number) {
     for(int i = 1; i <= 8; i++) {
         print_char(hex[(number >> (32 - 4 * i)) & 0xF]);
     }
-}        
+}      
+
+void print_int_10(int number) {
+    if(number < 0) {
+        print_char('-');
+    }
+    char not_zero = 0;
+    for(int pow = 1000000000; pow; pow /= 10) {
+        int digit = (number / pow) % 10;
+        if(digit) {
+            not_zero = 1;
+        }
+        if(not_zero || pow == 1) {
+            print_char('0' + digit);
+        }  
+    }
+}
 
 void print(unsigned char *text) {
     for (int i = 0; i < strlen((const char*)text); i++) {
