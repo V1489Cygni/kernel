@@ -9,3 +9,6 @@
 
 #Kernel image
 *.img
+
+#ISO files
+*.iso
