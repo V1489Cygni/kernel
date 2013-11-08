@@ -24,14 +24,24 @@ void process_cmd(unsigned char* cmd) {
 }
 
 int kernel_main() {
-    init_input();
     init_output();
+    print((unsigned char*)"Video memory is set up into text mode\nInstalling GDT...                  ");
     gdt_install();
+    print((unsigned char*)"OK\nInstalling IDT...                  ");
     idt_install();
+    print((unsigned char*)"OK\nInstalling ISRs...                 ");
     isr_install();
+    print((unsigned char*)"OK\nInstalling IRQs...                 ");
     irq_install();
+    print((unsigned char*)"OK\nInstalling keyboard input...       ");
+    init_input();
+    print((unsigned char*)"OK\nInstalling timer...                ");
     timer_install();
+    print((unsigned char*)"OK\nEnableing interrupts...            ");
     __asm__ __volatile__ ("sti");
+    print((unsigned char*)"OK\nMain is loaded at: ");
+    print_int((int)kernel_main);
+    print_char('\n');
     while(1) {
         print((unsigned char*)"> ");
         process_cmd(next_cmd());

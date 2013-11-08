@@ -72,6 +72,14 @@ void print_char(unsigned char c) {
     move_csr();
 }
 
+void print_int(int number) {
+    unsigned char* hex = (unsigned char*)"0123456789ABCDEF";
+    print((unsigned char*)"0x");
+    for(int i = 1; i <= 8; i++) {
+        print_char(hex[(number >> (32 - 4 * i)) & 0xF]);
+    }
+}        
+
 void print(unsigned char *text) {
     for (int i = 0; i < strlen((const char*)text); i++) {
         print_char(text[i]);
