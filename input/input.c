@@ -1,20 +1,26 @@
 #include "input.h"
 
 #include "../service/service.h"
+#include "../irq/irq.h"
+#include "../output/output.h"
 
-unsigned char last;
+volatile unsigned char ready;
+volatile unsigned char last;
 unsigned char shift;
 unsigned char table[0x80];
 unsigned char shift_table[0x80];
 
+void keyboard_handler(struct regs *r) {
+    ready = 1;
+    last = inportb(0x60);
+}
+
 unsigned char next_byte() {
-    while(1) {
-        unsigned char b = inportb(0x60);
-        if(b != last) {
-            last = b;
-            return b;		
-        }
+    while(!ready) {
+        __asm__ __volatile__ ("hlt");
     }
+    ready = 0;
+    return last;    
 }
 
 unsigned char next_char() {
@@ -136,7 +142,8 @@ void init_input() {
     shift_table[52] = '>';
     shift_table[53] = '?';
     shift_table[57] = ' ';
-    last = 0;
-    last = next_byte();
+    ready = 0;
     shift = 0;
+    last = 0;
+    irq_install_handler(1, keyboard_handler);
 }
