@@ -10,7 +10,7 @@ unsigned char shift;
 unsigned char table[0x80];
 unsigned char shift_table[0x80];
 
-void keyboard_handler(struct regs *r) {
+void keyboard_handler(regs *r) {
     ready = 1;
     last = inportb(0x60);
 }

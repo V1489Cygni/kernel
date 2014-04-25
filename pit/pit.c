@@ -13,7 +13,7 @@ void timer_phase(int hz) {
     outportb(0x40, divisor >> 8);   
 }
 
-void timer_handler(struct regs *r) {
+void timer_handler(regs *r) {
     timer_ticks++;    
     if (timer_ticks % 18 == 0) {
         //print((unsigned char*)"One second has passed\n");

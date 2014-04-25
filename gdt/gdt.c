@@ -1,7 +1,7 @@
 #include "gdt.h"
 
-struct gdt_entry gdt[3];
-struct gdt_ptr gp;
+gdt_entry gdt[3];
+gdt_ptr gp;
 
 void gdt_set_gate(int num, unsigned long base, unsigned long limit, unsigned char access, unsigned char gran) {
     gdt[num].base_low = (base & 0xFFFF);
@@ -14,7 +14,7 @@ void gdt_set_gate(int num, unsigned long base, unsigned long limit, unsigned cha
 }
 
 void gdt_install() {
-    gp.limit = (sizeof(struct gdt_entry) * 3) - 1;
+    gp.limit = (sizeof(gdt_entry) * 3) - 1;
     gp.base = (int)&gdt;
     gdt_set_gate(0, 0, 0, 0, 0);
     gdt_set_gate(1, 0, 0xFFFFFFFF, 0x9A, 0xCF);

@@ -20,10 +20,10 @@ extern void irq13();
 extern void irq14();
 extern void irq15();
 
-void irq_install_handler(int, void (*)(struct regs*));
+void irq_install_handler(int, void (*)(regs*));
 void irq_uninstall_handler(int);
 void irq_remap();
 void irq_install();
-void irq_handler(struct regs*);
+void irq_handler(regs*);
 
 #endif

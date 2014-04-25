@@ -72,7 +72,7 @@ void isr_install() {
     idt_set_gate(31, (unsigned)isr31, 0x08, 0x8E);
 }
 
-void fault_handler(struct regs *r) {
+void fault_handler(regs *r) {
     if (r->int_no < 32) {
         print(exception_messages[r->int_no]);
         print((unsigned char*)" Exception. System Halted!\n");

@@ -1,8 +1,8 @@
 #include "idt.h"
 #include "../service/service.h"
 
-struct idt_entry idt[256];
-struct idt_ptr idtp;
+idt_entry idt[256];
+idt_ptr idtp;
 
 void idt_set_gate(unsigned char num, unsigned long base, unsigned short sel, unsigned char flags) {
     idt[num].base_lo = (base & 0xFFFF);
@@ -13,8 +13,8 @@ void idt_set_gate(unsigned char num, unsigned long base, unsigned short sel, uns
 }
 
 void idt_install() {
-    idtp.limit = (sizeof (struct idt_entry) * 256) - 1;
+    idtp.limit = (sizeof (idt_entry) * 256) - 1;
     idtp.base = (int)&idt;
-    memset((unsigned char*)&idt, 0, sizeof(struct idt_entry) * 256);
+    memset((unsigned char*)&idt, 0, sizeof(idt_entry) * 256);
     idt_load();
 }
