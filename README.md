@@ -1,4 +1,4 @@
 kernel
 ======
 
-Kernel example
+Kernel writing experiments.

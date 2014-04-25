@@ -12,3 +12,6 @@
 
 #ISO files
 *.iso
+
+#Temp files
+*.un~
